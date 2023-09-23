@@ -6,22 +6,15 @@ public class App {
 
         do{
             for (int i = 0; i < gameHandler.playerAmount; i++) {
+                if(gameHandler.isOver) continue;
+
                 System.out.println("Card on the table: " + gameHandler.cardOnTable.number + " " + gameHandler.cardOnTable.color);
                 gameHandler.turn(gameHandler.players.get(i));
+                System.out.println("\n");
             }
         }while(!gameHandler.isOver);
 
-        //LOGS
-        showPlayersCards(gameHandler);
-    }
-
-    static void showPlayersCards(GameHandler gameHandler){
-        for (int i = 0; i < gameHandler.players.size(); i++) {
-            System.out.println("Player: " + i);
-            for (int j = 0; j < gameHandler.initialCards; j++) {
-                System.out.println(gameHandler.players.get(i).hand.get(j).number + " " + gameHandler.players.get(i).hand.get(j).color);
-            }
-            System.out.println("\n");
-        }
+        System.out.println("O jogo acabou!");
+        System.exit(0);
     }
 }

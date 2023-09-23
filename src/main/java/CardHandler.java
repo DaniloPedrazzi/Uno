@@ -16,15 +16,20 @@ public class CardHandler {
     static String returnColor(Integer color){
         String colorChoosed = "";
         switch (color){
-            case 0 -> colorChoosed = "green";
-            case 1 -> colorChoosed = "red";
-            case 2 -> colorChoosed = "blue";
-            case 3 -> colorChoosed = "yellow";
+            case 0 -> colorChoosed = "🟩";
+            case 1 -> colorChoosed = "🟥";
+            case 2 -> colorChoosed = "🟦";
+            case 3 -> colorChoosed = "🟨";
         }
         return colorChoosed;
     }
 
-    static Card drawRandomCard(List<Card> remainingCards){
+    static Card getRandomCard(List<Card> remainingCards, List<Card> playedCards){
+        //Puts the playedCards into playable cards again
+        if(remainingCards.isEmpty()){
+            remainingCards.addAll(playedCards);
+            playedCards.clear();
+        }
         int randomCardIndex = ThreadLocalRandom.current().nextInt(remainingCards.size());
         Card cardToDraw = remainingCards.get(randomCardIndex);
         remainingCards.remove(cardToDraw);
