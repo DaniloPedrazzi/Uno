@@ -4,7 +4,12 @@ public class App {
 
         gameHandler.drawInitialCards();
 
-
+        do{
+            for (int i = 0; i < gameHandler.playerAmount; i++) {
+                System.out.println("Card on the table: " + gameHandler.cardOnTable.number + " " + gameHandler.cardOnTable.color);
+                gameHandler.turn(gameHandler.players.get(i));
+            }
+        }while(!gameHandler.isOver);
 
         //LOGS
         showPlayersCards(gameHandler);

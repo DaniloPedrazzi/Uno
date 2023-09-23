@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CardHandler {
     static List<Card> initialCards(){
@@ -21,5 +22,12 @@ public class CardHandler {
             case 3 -> colorChoosed = "yellow";
         }
         return colorChoosed;
+    }
+
+    static Card drawRandomCard(List<Card> remainingCards){
+        int randomCardIndex = ThreadLocalRandom.current().nextInt(remainingCards.size());
+        Card cardToDraw = remainingCards.get(randomCardIndex);
+        remainingCards.remove(cardToDraw);
+        return cardToDraw;
     }
 }
